@@ -9,3 +9,27 @@ exports.createGame = async (gameObj) => {
         console.log(error)
     }
 }
+
+exports.readGames = async () => {
+    try {
+        return await Game.find({})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.updateSingle = async (filterTitle, newInformation) => {
+    try {
+        return Game.findOneAndUpdate(filterTitle, newInformation)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.deleteSingle = async (titleToDelete) => {
+    try {
+        return Game.findOneAndDelete(titleToDelete)
+    } catch(error) {
+        console.log(error)
+    }
+}
