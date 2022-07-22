@@ -33,3 +33,11 @@ exports.deleteSingle = async (titleToDelete) => {
         console.log(error)
     }
 }
+
+exports.filterGenre = async (filter) => {
+    try {
+        return Game.find(filter)
+    } catch(error) {
+        console.log(error)
+    }
+}

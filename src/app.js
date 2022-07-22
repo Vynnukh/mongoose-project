@@ -1,7 +1,7 @@
 require("./db/connection.js")
 const yargs = require("yargs")
 const mongoose = require("mongoose")
-const {createGame, readGames, updateSingle, deleteSingle} = require("./game/functions.js")
+const {createGame, readGames, updateSingle, deleteSingle, filterGenre} = require("./game/functions.js")
 
 const app = async (yargsObj) => {
     if (yargsObj.create) {
@@ -12,15 +12,16 @@ const app = async (yargsObj) => {
         console.log(await readGames())
         // This will handle listing the games that are within the databse in the format of a table
     } else if (yargsObj.update) {
-        await updateSingle({title: yargsObj.update}, {title: yargsObj.title, genre: yargsObj.genre})
-        console.log(updateSingle())
+        await updateSingle({title: yargsObj.update}, {newTitle: yargsObj.title, newGenre: yargsObj.genre})
         // This will handle updating a specific entry from the database
     } else if (yargsObj.delete) {
         await deleteSingle({title: yargsObj.delete})
         // This will handle deleting a specific entry from the database
+    } else if (yargsObj.filterGenre) {
+        console.log(await filterGenre({genre: yargsObj.filterGenre}))
     } else {
         console.log("Invalid Input")
-    }
+    } 
     await mongoose.disconnect()
 }
 
