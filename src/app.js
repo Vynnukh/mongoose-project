@@ -19,6 +19,7 @@ const app = async (yargsObj) => {
         // This will handle deleting a specific entry from the database
     } else if (yargsObj.filterGenre) {
         console.log(await filterGenre({genre: yargsObj.filterGenre}))
+        // This should handle filtering items within the database by genre
     } else {
         console.log("Invalid Input")
     } 
